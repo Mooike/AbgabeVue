@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<script src="https://unpkg.com/vue"></script>
+
+<body>
+<div id="app">
+  <input v-model="text"><br>
+  <h1>Eingabe: {{text}}</h1><br>
+  <h1>Wortlänge: {{text.length}}</h1><br>
+  <h1 v-if= "zeigen">Anzahl der Umlaute: {{counter}}</h1><br>
+  <button v-on:click="test">Testen</button>
+  
+</div>
+
+<script type="text/javascript">
+var app = new Vue({
+  el: '#app',
+  data: {
+    text: "",
+    zeigen: false,
+    counter: 0,
+    
+    
+  },
+  methods: {
+    test(){
+        var counter = 0
+        var totest = ["ä", "ö", "ü"]
+        var txt = this.text;
+        for (var index = 0; index < txt.length; index++) {
+           var letter = txt[index];
+           var ergebnis = totest.includes(letter);
+           if(ergebnis){
+               counter += 1
+           }
+           
+        }
+        this.counter = counter;
+        this.zeigen = true;
+    }
+  }
+})
+</script>
+
+</body>
+</html>
