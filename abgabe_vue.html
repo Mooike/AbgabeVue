@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html>
 <script src="https://unpkg.com/vue"></script>
-
+<!-- Einbinden der Vue.js Bibliothek -->
 <body>
-<div id="app">
+<div id="app"> <!-- App container -->
   <input v-model="text"><br>
+  <!-- Eingabefeld für den Text -->
   <h1>Eingabe: {{text}}</h1><br>
+  <!-- Anzeige der Eingabe über Variable "test" -->
   <h1>Wortlänge: {{text.length}}</h1><br>
+  <!-- Anzeige der Länge der Eingabe -->
   <h1 v-if= "zeigen">Anzahl der Umlaute: {{counter}}</h1><br>
+  <!-- Aufruf der Variable "counter; wird nur gezeigt wenn variable "zeigen" = True -->
   <button v-on:click="test">Testen</button>
+  <!-- Button, ruft beim klicken die Funktion "test()" auf  -->
   
 </div>
-
+<!-- Ende des App Containers -->
 <script type="text/javascript">
-var app = new Vue({
+var app = new Vue({ // Initializierung eine Vue.js instanz
   el: '#app',
-  data: {
-    text: "",
-    zeigen: false,
-    counter: 0,
+  data: { // Daten der App
+    text: "", //Variable "text", in der die Eingabe gespeichert wird 
+    zeigen: false, // Variable "zeigen", die in der Funktion "test()" verändert wird 
+    counter: 0, //Variable für die Anzahl der Umlaute
     
     
   },
-  methods: {
-    test(){
-        var counter = 0
-        var totest = ["ä", "ö", "ü"]
-        var txt = this.text;
-        for (var index = 0; index < txt.length; index++) {
-           var letter = txt[index];
-           var ergebnis = totest.includes(letter);
-           if(ergebnis){
-               counter += 1
+  methods: { // methoden der App
+    test(){ // wird druch Button "Testen" aufgerufen
+        var counter = 0 //Variable "counter" wird auf 0 gesetzt
+        var totest = ["ä", "ö", "ü"] //Array mit Umlauten
+        var txt = this.text; //holen der Eingabe
+        for (var index = 0; index < txt.length; index++) { //iteration über jeden Buchstabe der Eingabe
+           var letter = txt[index]; //Buchstabe der Eingabe
+           var ergebnis = totest.includes(letter); // Boolean ob buchstabe in Array "totest"
+           if(ergebnis){ //Wenn ergebnis = True
+               counter += 1 //"counter wird um 1 erhöht"
            }
            
         }
-        this.counter = counter;
-        this.zeigen = true;
+        this.counter = counter; //Variable counter wird aktualisiert
+        this.zeigen = true; //Anzahl der Umlaute wird angezeigt da zeigen  = True
     }
   }
 })
